@@ -28,7 +28,7 @@ class TopViewController: UIViewController, MenuControllerDelegate {
         setupSideMenu()
     }
 
-    func didSelectMenuItems(title: String) {
+    func tappedMenuItems(title: String) {
         sideMenu?.dismiss(animated: true, completion: { [weak self] in
 
             self?.title = title

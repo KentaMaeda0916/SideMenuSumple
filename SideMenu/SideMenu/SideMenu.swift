@@ -5,11 +5,15 @@
 //  Created by まえけん on 2021/08/08.
 //
 
+
+// 使用ライブラリ　https://github.com/jonkykong/SideMenu
+
+
 import Foundation
 import UIKit
 
 protocol MenuControllerDelegate {
-    func didSelectMenuItems(title: String)
+    func tappedMenuItems(title: String)
 }
 
 //　Headerの表示内容
@@ -72,7 +76,7 @@ class MenuController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedItem = menuItems[indexPath.row]
-        menuControllerDelegate?.didSelectMenuItems(title: selectedItem)
+        menuControllerDelegate?.tappedMenuItems(title: selectedItem)
     }
     
     //　Headerの表示内容
