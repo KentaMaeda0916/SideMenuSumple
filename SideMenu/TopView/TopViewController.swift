@@ -8,7 +8,7 @@
 import UIKit
 import SideMenu
 
-class TopViewController: UIViewController, MenuControllerDelegate {
+class TopViewController: UIViewController {
     
     private var sideMenu: SideMenuNavigationController?
     
@@ -18,16 +18,18 @@ class TopViewController: UIViewController, MenuControllerDelegate {
     let thirdVC = UIStoryboard(name: "ThirdView", bundle: nil)
         .instantiateViewController(identifier: "ThirdViewController") as ThirdViewController
     
-    @IBAction func didTapMenuButton() {
-        present(sideMenu!, animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupSideMenu()
     }
+}
 
+extension TopViewController: MenuControllerDelegate {
+    @IBAction func didTapMenuButton() {
+        present(sideMenu!, animated: true)
+    }
+    
     func tappedMenuItems(title: String) {
         sideMenu?.dismiss(animated: true, completion: { [weak self] in
 
@@ -83,6 +85,4 @@ class TopViewController: UIViewController, MenuControllerDelegate {
         controllerName.view.frame = view.bounds
         controllerName.view.isHidden = true
     }
-    
 }
-
