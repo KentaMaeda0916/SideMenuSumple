@@ -85,7 +85,7 @@ class MenuController: UITableViewController {
         return headerFooterView
     }
     
-    //
+    //　セクション数
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
