@@ -67,7 +67,6 @@ class MenuController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = menuItems[indexPath.row]
-        cell.backgroundColor = .systemGray6
         
         return cell
     }
