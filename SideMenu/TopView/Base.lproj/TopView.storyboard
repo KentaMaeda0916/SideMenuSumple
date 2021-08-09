@@ -21,7 +21,7 @@
                     <navigationItem key="navigationItem" title="Title" id="mpe-Gz-FlV">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="JZX-Vy-NjQ">
                             <connections>
-                                <action selector="didTapMenuButton" destination="BYZ-38-t0r" id="bvR-Ic-hmk"/>
+                                <action selector="sideMenuButton" destination="BYZ-38-t0r" id="bvR-Ic-hmk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

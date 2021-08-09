@@ -12,6 +12,7 @@ class TopViewController: UIViewController {
     
     private var sideMenu: SideMenuNavigationController?
     
+    //　SideMenuから遷移したいView
     let secondVC = UIStoryboard(name: "SecondView", bundle: nil)
         .instantiateViewController(identifier: "SecondViewController") as SecondViewController
     
@@ -20,21 +21,27 @@ class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+         
+        // SideMenuの作成
         setupSideMenu()
     }
 }
 
+// SideMenu用extention
 extension TopViewController: MenuControllerDelegate {
-    @IBAction func didTapMenuButton() {
+    
+    // SideMenu表示ボタン
+    @IBAction func sideMenuButton() {
         present(sideMenu!, animated: true)
     }
     
+    //　SideMenu表示ボタンを押した時の処理
     func tappedMenuItems(title: String) {
         sideMenu?.dismiss(animated: true, completion: { [weak self] in
 
             self?.title = title
-
+            
+            //選択したView以外を非表示に変更
             func activationMenu(activationMenu: UIViewController?) {
                 self?.secondVC.view.isHidden = true
                 self?.thirdVC.view.isHidden = true
@@ -58,26 +65,30 @@ extension TopViewController: MenuControllerDelegate {
         })
     }
     
+    //　SideMenuの設定
     func setupSideMenu() {
         let menu = MenuController(with: ["top","second","third"])
         
         menu.menuControllerDelegate = self
-        
         sideMenu = SideMenuNavigationController(rootViewController: menu)
+        
+        //　SideMenuのカスタマイズ
         sideMenu?.leftSide = true
         
         SideMenuManager.default.leftMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
         
+        //　子Viewの追加
         addChildController()
     }
     
-    
+    //　子Viewの追加
     private func addChildController() {
         createChildControllre(controllerName: secondVC)
         createChildControllre(controllerName: thirdVC)
     }
     
+    //　子Viewの設定
     private func createChildControllre(controllerName: UIViewController) {
         addChild(controllerName)
         view.addSubview(controllerName.view)
