@@ -11,7 +11,7 @@ import SideMenu
 class TopViewController: UIViewController {
     
     private var sideMenu: SideMenuNavigationController?
-    
+    private var sideMenuPresentationStyle: SideMenuPresentationStyle?
     //　SideMenuから遷移したいView
     let secondVC = UIStoryboard(name: "SecondView", bundle: nil)
         .instantiateViewController(identifier: "SecondViewController") as SecondViewController
@@ -73,7 +73,10 @@ extension TopViewController: MenuControllerDelegate {
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         
         //　SideMenuのカスタマイズ
+        //　左側に表示
         sideMenu?.leftSide = true
+        //　元のViewに重なるように表示
+        sideMenu?.presentationStyle = .menuSlideIn
         
         SideMenuManager.default.leftMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
