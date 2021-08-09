@@ -25,17 +25,7 @@ class TopViewController: UIViewController, MenuControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let menu = MenuController(with: ["top","second","third"])
-        
-        menu.menuControllerDelegate = self
-        
-        sideMenu = SideMenuNavigationController(rootViewController: menu)
-        sideMenu?.leftSide = true
-        
-        SideMenuManager.default.leftMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
-        
-        addChildController()
+        setupSideMenu()
     }
 
     func didSelectMenuItems(title: String) {
@@ -65,6 +55,22 @@ class TopViewController: UIViewController, MenuControllerDelegate {
             }
         })
     }
+    
+    func setupSideMenu() {
+        let menu = MenuController(with: ["top","second","third"])
+        
+        menu.menuControllerDelegate = self
+        
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        sideMenu?.leftSide = true
+        
+        SideMenuManager.default.leftMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
+        
+        addChildController()
+    }
+    
+    
     private func addChildController() {
         createChildControllre(controllerName: secondVC)
         createChildControllre(controllerName: thirdVC)
